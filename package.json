@@ -1,0 +1,13 @@
+{
+  "name": "do8-luxury-website",
+  "version": "1.0.0",
+  "description": "DO·8 Premium Daily Longevity Performance",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'No build step required for static HTML'"
+  },
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {}
+}

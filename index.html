@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DO·8 | Premium Daily Longevity Performance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --crimson: #9B1C31;
+            --gold: #C5A059;
+        }
+        .crimson-glow {
+            filter: drop-shadow(0 0 60px rgba(122, 0, 0, 0.12));
+        }
+        .soft-shadow {
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.05);
+        }
+        .luxury-card {
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .luxury-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.08);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .fade-up {
+            animation: fadeUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary": "#9B1C31",
+                "secondary": "#C5A059",
+                "background": "#FFFFFF",
+                "on-background": "#1A1A1A",
+                "surface": "#FFFFFF",
+                "outline-variant": "#E5E5E5"
+              },
+              "borderRadius": {
+                "luxury": "28px",
+                "full": "9999px"
+              },
+              "spacing": {
+                "gutter": "40px",
+                "margin-desktop": "100px",
+                "section-gap": "200px",
+                "container-max": "1800px"
+              },
+              "fontFamily": {
+                "display": ["Cormorant Garamond", "serif"],
+                "body": ["Inter", "sans-serif"]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background antialiased font-body selection:bg-primary/10">
+    <!-- Luxury Sticky Navbar -->
+    <header class="luxury-navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#">DO·8</a>
+            </div>
+            <nav class="nav-links">
+                <a href="#">Science</a>
+                <a href="#">Performance</a>
+                <a href="#">Journal</a>
+            </nav>
+            <div class="nav-cart">
+                <a href="#">Cart (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <!-- Background Ambient Elements -->
+        <div class="ambient-glow"></div>
+        <div class="particles-container" id="particles-container"></div>
+        <canvas id="ribbon-canvas" class="ribbon-canvas"></canvas>
+
+        <div class="hero-container">
+            <!-- Left Side: Editorial Typography -->
+            <div class="hero-content-left">
+                <div class="small-label">
+                    <span class="label-dot"></span> PREMIUM DAILY PERFORMANCE
+                </div>
+                
+                <h1 class="main-headline">
+                    Elevate Human <br> Performance <br> Through Daily Precision
+                </h1>
+                
+                <p class="subheading">
+                    Advanced nitric oxide wellness designed for circulation, energy, endurance and elevated vitality.
+                </p>
+                
+                <div class="cta-group">
+                    <a href="#" class="primary-button">SHOP DO·8</a>
+                    <a href="#" class="secondary-button">EXPLORE THE SCIENCE</a>
+                </div>
+                
+                <div class="trust-badges">
+                    <div class="badge-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>Scientific Wellness Formula</span>
+                    </div>
+                    <div class="badge-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        <span>High-Performance Support</span>
+                    </div>
+                    <div class="badge-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>Luxury Daily Ritual</span>
+                    </div>
+                </div>
+
+                <div class="limited-offer">
+                    <span class="offer-text">LIMITED OFFER: BUY 2 GET 1 FREE</span>
+                </div>
+            </div>
+
+            <!-- Right Side: Cinematic Floating Product -->
+            <div class="hero-visual-right">
+                <div class="canvas-wrapper">
+                    <canvas id="product-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 2. Benefits -->
+<section class="py-section-gap bg-white">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-24 fade-up">
+<h2 class="font-display text-5xl lg:text-6xl text-primary mb-6">Precision-Engineered Benefits</h2>
+<div class="w-20 h-px bg-secondary/40 mx-auto"></div>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="luxury-card p-12 rounded-luxury flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-secondary text-5xl mb-8 font-light">favorite</span>
+<h3 class="font-display text-3xl mb-4 text-primary">Heart Support</h3>
+<p class="text-on-background/60 leading-relaxed font-light">Clinical-grade support to optimize your cardiovascular vital systems.</p>
+</div>
+<div class="luxury-card p-12 rounded-luxury flex flex-col items-center text-center lg:mt-12">
+<span class="material-symbols-outlined text-secondary text-5xl mb-8 font-light">bolt</span>
+<h3 class="font-display text-3xl mb-4 text-primary">Energy &amp; Performance</h3>
+<p class="text-on-background/60 leading-relaxed font-light">Sustained mitochondrial fuel without the crash of stimulants.</p>
+</div>
+<div class="luxury-card p-12 rounded-luxury flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-secondary text-5xl mb-8 font-light">cached</span>
+<h3 class="font-display text-3xl mb-4 text-primary">Better Circulation</h3>
+<p class="text-on-background/60 leading-relaxed font-light">Enhanced vascular flow for rapid nutrient delivery and recovery.</p>
+</div>
+<div class="luxury-card p-12 rounded-luxury flex flex-col items-center text-center lg:mt-12">
+<span class="material-symbols-outlined text-secondary text-5xl mb-8 font-light">verified_user</span>
+<h3 class="font-display text-3xl mb-4 text-primary">Antioxidant Recovery</h3>
+<p class="text-on-background/60 leading-relaxed font-light">Advanced cellular defense against systemic inflammation.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Science Mix -->
+<section class="py-section-gap bg-white">
+<div class="max-w-container-max mx-auto px-gutter grid lg:grid-cols-2 gap-32 items-center">
+<div class="relative group fade-up">
+<div class="absolute -inset-4 bg-primary/5 rounded-[40px] transform group-hover:scale-105 transition-transform duration-700"></div>
+<img alt="Molecular Visual" class="relative z-10 rounded-luxury shadow-2xl w-full aspect-[4/5] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU5KwiISRlvJSaOemmQ8zVoFq1WjP7KbwBdolKrCxTacwsz9oHcjGE-243ozvD3zzDKTFu3SU2i5PgIt1g9FU3vP0T4crjnlwTSh6nW2p4l-JDZwEwnDFpZFcsPXqZahFlA5xOP5MbA8JdmqQ7RTx2bAvNY0jQSUUvOhTOtJL0-DWduIjykIGjo5Wj2wKzxaHR6ewb8uhMoqaECkfMDg1QSfd6VQvchAwopIcqTUwa1CHw8FPaHhfJ953Nz1BDsSqebSUtPXOwH7CM"/>
+</div>
+<div class="fade-up" style="animation-delay: 0.2s">
+<span class="text-[12px] tracking-[0.4em] uppercase text-secondary font-bold mb-8 block">Molecular Architecture</span>
+<h2 class="font-display text-5xl lg:text-7xl text-primary mb-12 leading-tight">The Science of Vitality</h2>
+<div class="space-y-12">
+<div class="flex gap-8 group">
+<div class="w-14 h-14 rounded-full border border-secondary/30 flex items-center justify-center font-display text-2xl text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-500 shrink-0">01</div>
+<div>
+<h4 class="font-display text-3xl text-primary mb-3">Nitric Oxide Pathway</h4>
+<p class="text-on-background/60 leading-relaxed font-light">Optimizing vasodilation to ensure peak oxygen transport across all vital systems.</p>
+</div>
+</div>
+<div class="flex gap-8 group">
+<div class="w-14 h-14 rounded-full border border-secondary/30 flex items-center justify-center font-display text-2xl text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-500 shrink-0">02</div>
+<div>
+<h4 class="font-display text-3xl text-primary mb-3">Bio-Availability</h4>
+<p class="text-on-background/60 leading-relaxed font-light">Advanced micronized delivery system for near-instant cellular absorption.</p>
+</div>
+</div>
+<div class="flex gap-8 group">
+<div class="w-14 h-14 rounded-full border border-secondary/30 flex items-center justify-center font-display text-2xl text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-500 shrink-0">03</div>
+<div>
+<h4 class="font-display text-3xl text-primary mb-3">Mitochondrial Stamina</h4>
+<p class="text-on-background/60 leading-relaxed font-light">Regulates ATP production for sustained natural energy throughout your day.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Ingredient Focus -->
+<section class="py-section-gap bg-white overflow-hidden">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 fade-up">
+<div>
+<span class="text-[12px] tracking-[0.4em] uppercase text-secondary font-bold mb-4 block">Composition</span>
+<h2 class="font-display text-5xl lg:text-6xl text-primary">Key Active Ingredients</h2>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined w-14 h-14 border border-outline-variant rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-500">west</button>
+<button class="material-symbols-outlined w-14 h-14 border border-outline-variant rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-500">east</button>
+</div>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group relative overflow-hidden rounded-luxury h-[450px] soft-shadow fade-up">
+<img alt="Pomegranate" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU3mInufIsH7dphkn7ABvD8ipJYRuFZMwqQxDLfM7B27LXQWJ9qVayPf8EPgkazPGd56OTK9qdoyZLsK9PnVmHAsMtxLsH6q_woUr9Au5b62hZelC80ZhxLbxTPv5NxpPnGCwxcPF9Qwp8BYYaXC1QWjFeW62m1QWxRKR8DTd2uf_XhcjfeC0KLaJ8tMc-BFtYe-wQ5K_AZcI2jvDqSNrBy1rwVDoyEX-Y1ZrrdykgDpEGFbpHlon37WP3sxxOX2ddSD5IDuc_gKYO"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="text-white font-display text-3xl mb-1">Pomegranate</h3>
+<p class="text-white/60 text-[11px] uppercase tracking-widest font-bold">Punicalagins</p>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-luxury h-[450px] soft-shadow fade-up" style="animation-delay: 0.1s">
+<img alt="Beetroot" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6ZHGMnyaN9Es5CHjHhKmB4FBj-bZCfWnL9qNjn1FootfGLH7B_T6hF9eMw_0Xvf4MHc6PQKTuif3KYE4SXyA2T1IiaqInTJ7EtiDiUFswOhUDWWtXqVbteTZTsC5EhxBS6gN_OANo6uVQZYCkDgEIyrqiF-DsD2HApStnsbKfrFpq6W_joif4C2snAOqBaYSET6NBqbt_rC9nNl9MIFITSQY9cJo5NtiNhvgdh5P-pfJKYjKWDM7mNqvlDSQ7hwhKEDZSrPOyFxBz"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="text-white font-display text-3xl mb-1">Beetroot</h3>
+<p class="text-white/60 text-[11px] uppercase tracking-widest font-bold">Natural Nitrates</p>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-luxury h-[450px] soft-shadow fade-up" style="animation-delay: 0.2s">
+<img alt="Berry Blend" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ3wxeNTArzt32yIGtf0olqH1Ks5La_cJy69sMakdEVuG6EWa-bpISNq4uNop9KjAqywWQO9cjs5vee3bbT9M8LOeu9RHIBgJN1kGXRg7F_hdvC_2zPFef0QgJeVh4ODwt3NGpkK_MTSdlZQANMS6vcDgGrronR0tUOQA1F8ahF9e6Dzt9cKEtQcU9C_NT_YLFIVrRA_YjRPtYcHsjdQ-NKACEMKhSeOgCe3OSY-8bPLHJpE5YHqEleV9Fxuhx_z8MGJEaxhRD5dzK"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="text-white font-display text-3xl mb-1">Berry Blend</h3>
+<p class="text-white/60 text-[11px] uppercase tracking-widest font-bold">Antioxidants</p>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-luxury h-[450px] soft-shadow fade-up" style="animation-delay: 0.3s">
+<img alt="Nitric Oxide" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoCpHQrUnUMIu_oGBmQNXWDHkJvf4D3doQXiCcO_na0a9mURtpxJayCuTS67wbumwKxJRP9jZCJChH778uTF1sqvxHqzYysePRq9rnR9NLA-InADUX3uFagdzwK7lEyprJ71BweM9QjvH-NPpTFcbCp3rtx6-ynh8e22hdZtIzUdYOKt8dh9hwdDCKTpPNICPDz_-x-U-TmC9CNfA8WwXNalzrHhQZwSTxIrvpoEWeHuID-LP9lhv6eO4oS-3to22Nz6h00g9fXqac"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="text-white font-display text-3xl mb-1">Nitric Oxide</h3>
+<p class="text-white/60 text-[11px] uppercase tracking-widest font-bold">Vascular Flow</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Product Showcase -->
+<section class="py-section-gap relative bg-white">
+<div class="max-w-container-max mx-auto px-gutter text-center relative z-10 fade-up">
+<h2 class="font-display text-5xl lg:text-7xl text-primary mb-16">Designed for Your Lifestyle</h2>
+<div class="relative max-w-5xl mx-auto">
+<div class="absolute inset-0 bg-primary/5 blur-[150px] rounded-full scale-110"></div>
+<img alt="DO·8 Supplement Package" class="relative z-10 w-full h-auto crimson-glow animate-float" src="https://lh3.googleusercontent.com/aida/ADBb0uj9NGEHzgyCViOtkurWW--NmDDRwLlgnlLt2eoKg1JAxykP1kx4U_MWIMjfIFtrPwXytqn9sVjVy8mbmK85V1h2tmzBCEj87ZLPifdAVRWVPBo1I_BBDuAj-gUI9BFc1MU4qo7QXjY4fUBxZRUOOme1MQpb6j_9XfUq50PsOsSynZuK6txH43Qbr9rC9JD8pbaD8nyr8ERTm1fZ9dy9823yzPhWUX_A_J9FkoNUGq2ybHYdLZaKlzh98oc-xfRzRPvmaYlIxlBPA-k"/>
+<div class="grid grid-cols-3 gap-12 mt-24">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 font-light">verified</span>
+<p class="text-[11px] uppercase tracking-[0.3em] font-bold text-on-background/60">Lab Tested</p>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 font-light">eco</span>
+<p class="text-[11px] uppercase tracking-[0.3em] font-bold text-on-background/60">Non-GMO</p>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 font-light">public</span>
+<p class="text-[11px] uppercase tracking-[0.3em] font-bold text-on-background/60">Carbon Neutral</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Bundle Offer -->
+<section class="py-section-gap bg-white border-y border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-24 fade-up">
+<h2 class="font-display text-5xl lg:text-6xl text-primary mb-10">Experience DO·8</h2>
+<div class="flex items-center justify-center gap-6">
+<span class="text-[11px] uppercase tracking-widest font-bold">One-time</span>
+<button class="w-14 h-7 bg-primary rounded-full relative p-1 flex items-center justify-end">
+<div class="w-5 h-5 bg-white rounded-full shadow-sm"></div>
+</button>
+<span class="text-[11px] uppercase tracking-widest font-bold text-primary">Subscribe &amp; Save 15%</span>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-8 items-stretch">
+<!-- Single -->
+<div class="luxury-card p-12 rounded-luxury flex flex-col fade-up">
+<h3 class="font-display text-3xl text-primary mb-2">Single Jar</h3>
+<p class="text-on-background/40 text-sm mb-10">30 Day Supply</p>
+<div class="flex items-baseline gap-2 mb-12">
+<span class="text-5xl font-display text-primary">$79</span>
+<span class="text-on-background/40">/ month</span>
+</div>
+<ul class="space-y-6 mb-12 flex-grow">
+<li class="flex items-center gap-4 text-sm font-light"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span>30 stick packs</li>
+<li class="flex items-center gap-4 text-sm font-light"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span>Standard shaker</li>
+</ul>
+<button class="w-full border border-primary text-primary py-5 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-primary hover:text-white transition-all duration-500">Select Offer</button>
+</div>
+<!-- Bundle -->
+<div class="luxury-card p-12 rounded-luxury flex flex-col border-secondary/40 relative shadow-2xl scale-105 z-10 fade-up" style="animation-delay: 0.1s">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-white text-[10px] uppercase tracking-widest px-8 py-2 rounded-full font-bold">Best Value</div>
+<h3 class="font-display text-3xl text-primary mb-2">Double Bundle</h3>
+<p class="text-on-background/40 text-sm mb-10">60 Day Supply</p>
+<div class="flex items-baseline gap-2 mb-12">
+<span class="text-5xl font-display text-primary">$139</span>
+<span class="text-on-background/40">/ 60 days</span>
+</div>
+<ul class="space-y-6 mb-12 flex-grow">
+<li class="flex items-center gap-4 text-sm font-light"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span>60 stick packs</li>
+<li class="flex items-center gap-4 text-sm font-light"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span>Complimentary Shipping</li>
+<li class="flex items-center gap-4 text-sm font-light text-primary font-medium"><span class="material-symbols-outlined text-secondary text-lg">stars</span>Save $20 today</li>
+</ul>
+<button class="w-full bg-primary text-white py-6 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-black transition-all duration-500">Claim Best Value</button>
+</div>
+<!-- Triple -->
+<div class="luxury-card p-12 rounded-luxury flex flex-col fade-up" style="animation-delay: 0.2s">
+<h3 class="font-display text-3xl text-primary mb-2">Triple Bundle</h3>
+<p class="text-on-background/40 text-sm mb-10">90 Day Supply</p>
+<div class="flex items-baseline gap-2 mb-12">
+<span class="text-5xl font-display text-primary">$199</span>
+<span class="text-on-background/40">/ 90 days</span>
+</div>
+<ul class="space-y-6 mb-12 flex-grow">
+<li class="flex items-center gap-4 text-sm font-light"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span>90 stick packs</li>
+<li class="flex items-center gap-4 text-sm font-light"><span class="material-symbols-outlined text-secondary text-lg">check_circle</span>Elite Access Community</li>
+<li class="flex items-center gap-4 text-sm font-light text-primary font-medium"><span class="material-symbols-outlined text-secondary text-lg">stars</span>Save $38 today</li>
+</ul>
+<button class="w-full border border-primary text-primary py-5 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-primary hover:text-white transition-all duration-500">Select Offer</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Lifestyle -->
+<section class="relative h-[90vh] flex items-center overflow-hidden bg-white">
+<img alt="Lifestyle Morning Ritual" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvBJogR8mOsXXn6Z3Tz3qAyFUQxbqDNRuH0yK-Tc0eDKrYjvMCaOZOsADLOPYl7Y_AfX720de21ec0Oi5C0Wy_iVGp53wGGU3POld9umG4M4dNsexARYpmJgcl2zGxba0EhKr31dAtOEUm3_5ZNRNOtsHrNKPleEnOM1LvyNa3_TWCrUjphDFJ-QK3r-HDLABbGB9frkMzcPJGNVwwZ-dYUwRvXSajA0kymOIswtz519qBjQsKo74HRlr9l5ekgLN4W_TgjiNS9cpR"/>
+<div class="absolute inset-0 bg-white/20"></div>
+<div class="max-w-container-max mx-auto px-gutter relative z-10">
+<div class="max-w-2xl fade-up">
+<h2 class="font-display text-6xl lg:text-8xl text-primary mb-10 leading-[0.9]">Master Your Morning Ritual</h2>
+<p class="text-xl text-on-background/80 mb-12 font-light leading-relaxed">Luxury wellness is a choice. DO·8 integrates seamlessly into your life, fueling your peak performance before the world even wakes up.</p>
+<div class="w-24 h-px bg-secondary mb-12"></div>
+</div>
+</div>
+</section>
+<!-- 8. Testimonials -->
+<section class="py-section-gap bg-white">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-24 fade-up">
+<span class="text-[12px] tracking-[0.4em] uppercase text-secondary font-bold mb-4 block">Voices of Longevity</span>
+<h2 class="font-display text-5xl lg:text-6xl text-primary">Peer Recognition</h2>
+</div>
+<div class="max-w-4xl mx-auto luxury-card p-16 lg:p-24 rounded-luxury text-center relative fade-up">
+<span class="material-symbols-outlined text-secondary/20 text-8xl absolute top-12 left-12 font-light">format_quote</span>
+<div class="flex items-center justify-center gap-2 mb-10">
+<span class="material-symbols-outlined text-secondary text-xl font-variation-fill">star</span>
+<span class="material-symbols-outlined text-secondary text-xl font-variation-fill">star</span>
+<span class="material-symbols-outlined text-secondary text-xl font-variation-fill">star</span>
+<span class="material-symbols-outlined text-secondary text-xl font-variation-fill">star</span>
+<span class="material-symbols-outlined text-secondary text-xl font-variation-fill">star</span>
+</div>
+<p class="font-display text-4xl lg:text-5xl text-primary italic mb-12 leading-tight">"Since integrating DO·8 into my morning routine, my mental clarity has been profound. The energy is steady, clean, and makes me feel a decade younger."</p>
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 rounded-full bg-primary/5 border border-outline-variant flex items-center justify-center text-primary font-display text-xl">AJ</div>
+<div>
+<p class="font-display text-2xl text-primary">Alexander J. <span class="material-symbols-outlined text-lg text-secondary align-middle">verified</span></p>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-background/40">Venture Partner &amp; Athlete</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. Final CTA -->
+<section class="py-section-gap relative overflow-hidden bg-white text-center">
+<div class="max-w-container-max mx-auto px-gutter relative z-10 flex flex-col items-center">
+<div class="w-72 mb-16 fade-up">
+<img alt="DO·8 Supplement Package" class="w-full h-auto crimson-glow animate-float" src="https://lh3.googleusercontent.com/aida/ADBb0uj9NGEHzgyCViOtkurWW--NmDDRwLlgnlLt2eoKg1JAxykP1kx4U_MWIMjfIFtrPwXytqn9sVjVy8mbmK85V1h2tmzBCEj87ZLPifdAVRWVPBo1I_BBDuAj-gUI9BFc1MU4qo7QXjY4fUBxZRUOOme1MQpb6j_9XfUq50PsOsSynZuK6txH43Qbr9rC9JD8pbaD8nyr8ERTm1fZ9dy9823yzPhWUX_A_J9FkoNUGq2ybHYdLZaKlzh98oc-xfRzRPvmaYlIxlBPA-k"/>
+</div>
+<h2 class="font-display text-6xl lg:text-8xl text-primary mb-10 leading-tight fade-up">Join The DO·8 Ritual</h2>
+<p class="text-xl text-on-background/60 mb-16 max-w-xl font-light fade-up">Your peak performance, scientifically optimized. Begin your longevity journey today.</p>
+<button class="bg-primary text-white px-16 py-6 rounded-full text-[14px] uppercase tracking-[0.3em] font-bold shadow-2xl shadow-primary/20 hover:bg-black transition-all duration-500 fade-up">Claim Your Offer</button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-white border-t border-outline-variant/30 py-24">
+<div class="max-w-container-max mx-auto px-gutter text-center">
+<div class="font-display text-5xl tracking-tight text-primary font-semibold mb-12">DO·8</div>
+<div class="flex flex-wrap justify-center gap-12 mb-16">
+<a class="text-[11px] uppercase tracking-widest font-bold text-on-background/60 hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-[11px] uppercase tracking-widest font-bold text-on-background/60 hover:text-primary transition-colors" href="#">Terms</a>
+<a class="text-[11px] uppercase tracking-widest font-bold text-on-background/60 hover:text-primary transition-colors" href="#">Shipping</a>
+<a class="text-[11px] uppercase tracking-widest font-bold text-on-background/60 hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<div class="flex justify-center gap-10 mb-16 text-on-background/40">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">chat_bubble</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">mail</span>
+</div>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-background/30">© 2024 DO·8 Longevity. Precision Crafted.</p>
+</div>
+</footer>
+<style>
+    .font-variation-fill {
+        font-variation-settings: 'FILL' 1;
+    }
+</style>
+    <!-- GSAP for Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body></html>
