@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const frameCount = 213;
     const currentFrame = index => (
-        `assets/frames/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
+        `public/assets/frames/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
     );
 
     const images = [];
